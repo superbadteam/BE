@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const WebSocket = require('ws');
 const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
@@ -8,6 +9,23 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
   server = app.listen(config.port, () => {
     logger.info(`Listening to port ${config.port}`);
+  });
+
+  // WebSocket server setup
+  const wss = new WebSocket.Server({ host: 'localhost', port: 5001 });
+  logger.info('WebSocket server is listening on port 5001');
+
+  wss.on('connection', (ws) => {
+    logger.info('New WebSocket connection');
+
+    ws.on('message', (message) => {
+      logger.info(`Received message: ${message}`);
+      // Handle incoming messages here
+    });
+
+    ws.on('close', () => {
+      logger.info('WebSocket connection closed');
+    });
   });
 });
 
