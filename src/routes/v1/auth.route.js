@@ -40,6 +40,7 @@ module.exports = router;
  *               - name
  *               - email
  *               - password
+ *               - rasId
  *             properties:
  *               name:
  *                 type: string
@@ -52,10 +53,14 @@ module.exports = router;
  *                 format: password
  *                 minLength: 8
  *                 description: At least one number and one letter
+ *               rasId:
+ *                type: string
+ *                description: The raspberry id
  *             example:
  *               name: fake name
  *               email: fake@example.com
  *               password: password1
+ *               rasId: "1"
  *     responses:
  *       "201":
  *         description: Created
