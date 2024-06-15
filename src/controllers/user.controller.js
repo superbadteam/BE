@@ -35,7 +35,9 @@ const deleteUser = catchAsync(async (req, res) => {
 });
 
 const getMe = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.user.id);
+  const id = req.user.id ?? req.user._id;
+  console.log('id', id);
+  const user = await userService.getUserById(id);
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
