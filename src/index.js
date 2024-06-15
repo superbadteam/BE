@@ -12,7 +12,7 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   });
 
   // WebSocket server setup
-  const wss = new WebSocket.Server({ host: 'localhost', port: 5001 });
+  const wss = new WebSocket.Server({ host: '0.0.0.0', port: 5001 });
   logger.info('WebSocket server is listening on port 5001');
 
   wss.on('connection', (ws) => {
