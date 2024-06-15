@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema(
       private: true, // used by the toJSON plugin
     },
     rasId: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: String,
       ref: 'Ras',
       required: true,
     },
